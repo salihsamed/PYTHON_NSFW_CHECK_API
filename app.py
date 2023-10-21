@@ -22,11 +22,11 @@ def nsfwCheck(image):
 app=Flask(__name__)
 
 @app.route("/check_nsfw",methods=["POST"])
-async def home():
+def home():
     if "image" not in request.files:
         return jsonify({'error':"No image file provided"},{"isSafe":False})
     f = request.files['image']
-    await f.save('images/{filename}'.format(filename=f.filename))
+    f.save('images/{filename}'.format(filename=f.filename))
     try:
         result=nsfwCheck('images/{filename}'.format(filename=f.filename))
     except Exception as e:
