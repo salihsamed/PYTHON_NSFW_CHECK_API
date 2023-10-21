@@ -34,5 +34,3 @@ def home():
 
     os.remove('images/{filename}'.format(filename=f.filename))
     return jsonify(result)
-if __name__=="__main__":
-    app.run(debug=True)
