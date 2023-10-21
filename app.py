@@ -23,16 +23,14 @@ app=Flask(__name__)
 
 @app.route("/check_nsfw",methods=["POST"])
 def home():
-    if not os.path.exists('images'):
-        print("images klasörü yok")
-    # if "image" not in request.files:
-    #     return jsonify({'error':"No image file provided"},{"isSafe":False})
-    # f = request.files['image']
-    # f.save('images/{filename}'.format(filename=f.filename))
-    # try:
-    #     result=nsfwCheck('images/{filename}'.format(filename=f.filename))
-    # except Exception as e:
-    #     return jsonify({"error":e},{"isSafe":False})
+    if "image" not in request.files:
+        return jsonify({'error':"No image file provided"},{"isSafe":False})
+    f = request.files['image']
+    f.save('{filename}'.format(filename=f.filename))
+    try:
+        result=nsfwCheck('{filename}'.format(filename=f.filename))
+    except Exception as e:
+        return jsonify({"error":e},{"isSafe":False})
 
-    # os.remove('images/{filename}'.format(filename=f.filename))
-    # return jsonify(result)
+    os.remove('{filename}'.format(filename=f.filename))
+    return jsonify(result)
