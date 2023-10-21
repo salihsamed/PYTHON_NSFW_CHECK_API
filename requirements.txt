@@ -1,3 +1,4 @@
 Flask==2.2.5
 nudenet==3.0.8
 gunicorn
+asgiref
