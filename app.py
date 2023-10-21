@@ -26,6 +26,7 @@ def home():
     if "image" not in request.files:
         return jsonify({'error':"No image file provided"},{"isSafe":False})
     f = request.files['image']
+    print("Doc",f)
     f.save('images/{filename}'.format(filename=f.filename))
     try:
         result=nsfwCheck('images/{filename}'.format(filename=f.filename))
