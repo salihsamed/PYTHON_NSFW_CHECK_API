@@ -1,5 +1,6 @@
 from nudenet import NudeDetector
 from flask import Flask,request,jsonify
+from flask_cors import CORS
 import os
 
 nude_detector = NudeDetector()
@@ -20,6 +21,7 @@ def nsfwCheck(image):
 
 
 app=Flask(__name__)
+CORS(app)
 
 @app.route("/check_nsfw",methods=["POST"])
 def home():
